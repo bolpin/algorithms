@@ -1,0 +1,31 @@
+12.1
+unsigned ints are by definition never less that 1, causing an infinite loop
+Unsigned ints should be represented by the %u flag in a printf formatted
+string
+
+12.2
+uninitialized variable
+memory - memory leak / stack data corruption / heap overflow
+random number generation / user input / time of day
+external dependency - network / library
+
+12.3 boolean canMoveTo(int x, int y)
+Should we return false or throw an exception in various cases?
+To test, check that the target space is on the board, that it is not occupied
+by a piece of the same color, that it is not obstructed (when appropriate) by
+a piece of either color, and that it is a possible landing point for the
+subject piece.  There should be a set of tests that ensure all the rules of
+chess are taken into account, including en passant moves, castling, promotion
+to other piece types, etc.
+
+12.4 load testing -- no tools allowed
+TODO - research this!
+
+12.5 pen
+What kind of pen?  How is it intended to be used?  Who is it intended for?
+What are key features? Comfort, durability, ink quality, safety?
+
+12.6 ATM in distributed banking system
+Who will use?
+What functions will it expose? Withdraw? Deposit? Transfer? Check Balance?
+What are key system requirements?  Account balance integrity?  Security?

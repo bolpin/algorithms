@@ -3,6 +3,12 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
     "jest": "^27.0.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
   }
 }
