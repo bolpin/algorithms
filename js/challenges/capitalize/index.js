@@ -9,12 +9,12 @@
 
 
 function capitalize(str) {
-	let next_cap = true;
 	let result = '';
 	for (let i = 0; i < str.length; i++) {
-		if(i === 0 || str[i-1].match(/[\n\t ]/)) {
+		if (i === 0 || [' ', '\t', '\n'].includes(str[i-1])) {
 			result += str[i].toUpperCase();
-		} else {
+		}
+		else {
 			result += str[i];
 		}
 	}

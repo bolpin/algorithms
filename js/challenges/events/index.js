@@ -7,24 +7,23 @@ class Events {
 	constructor() {
 		this.events = {};
 	}
-	on(ev, callback) {
-		if (!this.events[ev]) {
-			this.events[ev] = [callback];
+	
+	on(event, fn) {
+		if (this.events[event]) {
+			this.events[event].push(fn);
 		} else {
-			this.events[ev].push(callback);
+			this.events[event] = [fn];
 		}
 	}
 
-	trigger(ev) {
-		if (this.events[ev]) {
-			for(let fn of this.events[ev]) {
-				fn.call(this);
-			}
+	trigger(event) {
+		for (let fn of this.events[event]) {
+			fn();
 		}
 	}
 
-	off(ev) {
-		this.events[ev] = null;
+	off(event) {
+		this.events[event] = [];
 	}
 }
 

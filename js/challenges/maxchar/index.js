@@ -6,20 +6,19 @@
 // maxChar("apple 1231111") === "1"
 
 
-class StringStats {
+class CharCounter {
 	constructor(str) {
-		this.charCounts = {};
-		for (let c of str) {
-			this.charCounts[c] = this.charCounts[c]++ || 1;	
+		this.counts = {};
+		for(const c of str) {
+			this.counts[c] = this.counts[c]+1 || 1;
 		}
 	}
-
-	mostCommonChar() {
+	max() {
 		let maxCount = 0;
 		let maxChar = null;
-		for (let key in this.charCounts) {
-			if (maxCount < this.charCounts[key]) {
-				maxCount = this.charCounts[key];
+		for (const key in this.counts) {
+			if(this.counts[key] > maxCount) {
+				maxCount = this.counts[key];
 				maxChar = key;
 			}
 		}
@@ -28,8 +27,7 @@ class StringStats {
 }
 
 function maxChar(str) {
-	counter = new StringStats(str);
-	return counter.mostCommonChar();
+	return new CharCounter(str).max();
 }
 
 module.exports = maxChar;

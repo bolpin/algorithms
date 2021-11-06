@@ -15,47 +15,69 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
+const { arrayTypeAnnotation } = require("@babel/types");
+
+// r  R  c  C
+// +
+//          -
+//    -
+//       +
+// 0, 3, 0, 3 a
+// 1, 3, 0, 3 d
+// 1, 3, 0, 2 b
+// 1, 2, 0, 2 u
+// 1, 2, 1, 2 a
+// 2, 2, 1, 2 d
+// 2, 2, 1, 1 b 
+// 2, 1, 1, 1 DONE
+
 function matrix(n) {
-	let matrix = new Array(n).fill('0');
+	let matrix = new Array(n);
 	for (let i = 0; i < n; i++) {
-		matrix[i] = new Array(n).fill('0');
+		matrix[i] = new Array(n).fill(0);
 	}
-	let val = 1; // this is the value to be placed
-
-	let minCol = 0;
 	let maxCol = n-1;
-	let minRow = 0; 
 	let maxRow = n-1;
+	let minCol = 0;
+	let minRow = 0;
 
-	while (minCol <= maxCol && minRow <= maxRow) {
+	let num = 1;
+	console.log(matrix);
+
+	while (maxCol >= minCol && maxRow >= minRow) {
+		// across ->
 		for(let i = minCol; i <= maxCol; i++) {
-			matrix[minRow][i] = val;
-			val++;
+			matrix[minRow][i] = num;
+			num++;
 		}
 		minRow++;
 
-		for(let i = minRow; i <= maxRow; i++) {
-			matrix[i][maxCol] = val;
-			val++;
+		// down
+		for(let i = minRow; i <= maxRow ;i++) {
+			matrix[i][maxCol] = num;
+			num++;
 		}
 		maxCol--;
 
+		// across <-
 		for(let i = maxCol; i >= minCol; i--) {
-			matrix[maxRow][i] = val;
-			val++;
+			matrix[maxRow][i] = num;
+			num++;
 		}
 		maxRow--;
 
-		for (let i = maxRow; i >= minRow; i--) {
-			matrix[i][minCol] = val;
-			val++;
+		// up
+		for(let i = maxRow; i >= minRow; i--) {
+			matrix[i][minCol] = num;
+			num++;
 		}
 		minCol++;
 	}
-	console.log(matrix)
+	
 	return matrix;
 }
 
+// let m = new matrix(4);
 
 
 

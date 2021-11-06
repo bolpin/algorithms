@@ -8,11 +8,11 @@
 
 function bubbleSort(arr) {
 	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr.length - i; j++) {
+		for(let j = 0; j < arr.length-i; j++) {
 			if (arr[j] > arr[j+1]) {
-				const tmp = arr[j+1];
-				arr[j+1] = arr[j];
-				arr[j] = tmp;
+				const tmp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = tmp;
 			}
 		}
 	}
@@ -26,15 +26,15 @@ function bubbleSort(arr) {
 // best/avg/worst = n^2/n^2/n^2
 function selectionSort(arr) {
 	for (let i = 0; i < arr.length; i++) {
-		let minIndex = i;
+		let smallest = i;
 		for (let j = i+1; j < arr.length; j++) {
-			if (arr[j] < arr[minIndex]) {
-				minIndex = j;
+			if (arr[j] < arr[smallest]) {
+				smallest = j;
 			}	
 		}
-		if (i !== minIndex) {
-			const tmp = arr[minIndex];
-			arr[minIndex] = arr[i];
+		if (i !== smallest) {
+			let tmp = arr[smallest];
+			arr[smallest] = arr[i];
 			arr[i] = tmp;
 		}
 	}
@@ -46,24 +46,24 @@ function selectionSort(arr) {
 // not in-place; uses a fair amount of memory (O(n))
 // best/avg/worst = nlog(n)/nlog(n)/nlog(n) 
 function mergeSort(arr) {
-	if (arr.length === 1) { return arr; }
-	const midPoint = Math.floor(arr.length/2);
-	const left = arr.slice(0,midPoint);
-	const right = arr.slice(midPoint);
+	if (arr.length < 2) { return arr; }
+	const midpoint = Math.floor(arr.length / 2);
+	const left = arr.slice(0, midpoint);
+	const right = arr.slice(midpoint);
 
 	return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
-	const result = [];
-	while(left.length && right.length) {
+	let merged = [];
+	while(left.length && right.length){
 		if (left[0] < right[0]) {
-			result.push(left.shift());
+			merged.push(left.shift());
 		} else {
-			result.push(right.shift());
+			merged.push(right.shift());
 		}
 	}
-	return [...result, ...left, ...right];
+	return [...merged, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };

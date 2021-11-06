@@ -9,9 +9,18 @@
 //   reverseInt(-90) === -9
 
 function reverseInt(num) {
-	let result = 0;
-	result = parseInt(`${Math.abs(num)}`.split('').reverse().join(''));
-	return Math.sign(num) * result;
+
+	let reversed = 0;
+	let n = Math.abs(num);
+	while(n > 0) {
+		let a = n % 10
+		n = Math.floor(n/10);
+		reversed = reversed * 10 + a;
+	}
+
+	let sign = num < 0 ? -1 : 1;
+
+	return sign * reversed;
 }
 
 console.log(reverseInt(-981));
@@ -23,42 +32,28 @@ console.log(reverseInt(-981));
     // Math.abs(int)
 
 
-    // SOLUTION 3 ***
+    // SOLUTION 2
     //let reversed = `${Math.abs(num)}`
     //    .split('')
     //    .reduce((revd, c) => c + revd, '');
     //return Math.sign(num) * parseInt(reversed); 
 
-    
-    // SOLUTION 2
-    // let isNeg = num < 0;
-    // prefix = '';
-
-    // if (isNeg) {
-    //     num = num * -1;
-    //     prefix = '-';
-    // }
-
-    // let reversed = `${num}`
-    //     .split('')
-    //     .reduce((rev, c) => c + rev, '')
-
-    // return parseInt(prefix + reversed)
 
     // SOLUTION 1
-    // if (num === 0) { return num; }
-    // let sign = '';
-    // let mult = 1;
-    // if (num < 0) {
-    //     sign = '-';
-    //     mult = -1;
-    // }
-    // let ar = []
-    // num = num * mult;
-    // while(num > 0) {
-    //     ar.push(num % 10);
-    //     num = Math.floor(num/10);
-    // }
-    // return parseInt(sign + ar.join(''));
+// function reverseInt(num) {
+
+// 	let reversed = 0;
+// 	let n = Math.abs(num);
+// 	while(n > 0) {
+// 		let a = n % 10
+// 		n = Math.floor(n/10);
+// 		reversed = reversed * 10 + a;
+// 	}
+
+// 	let sign = num < 0 ? -1 : 1;
+
+// 	return sign * reversed;
+// }
+
 
 module.exports = reverseInt;

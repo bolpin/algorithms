@@ -11,28 +11,32 @@
 const { valueToNode } = require("@babel/types");
 
 function fib(n) {
-	if (n >= 0 && n < 2) {
+	if (n<0) {
+		throw new Error("neg argument prohibited");
+	}
+	if (n < 2) {
 		return n;
 	}
-	return fib(n-1) + fib(n-2);
+	return (fib(n-1) + fib(n-2));
 }
 
 function memoize(fn) {
 	const cache = {};
-	return function(...args) {
+	return (...args) => {
 		if (cache[args]) {
 			return cache[args];
-		} else {
-			const result = fn.apply(this, args);
-			cache[args] = result;
-			return result;
 		}
+		const result = fn.apply(this, args);
+		cache[args] = result;
+		return result;
 	}
 }
 
 fib = memoize(fib);
 
+
 const start = new Date().getTime();
+
 fib(40);
 const end = new Date().getTime();
 const elapsed = end - start;

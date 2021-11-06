@@ -12,18 +12,20 @@
 //   c.next = b;
 //   circular(l) // true
 
+// circular list:
 // a -> b -> c -> b
-
+// 
 function circular(list) {
-	let slow = list.head;
-	let fast = list.head;
-	while (fast.next && fast.next.next) {
+	let slow = list.getFirst();
+	let fast = list.getFirst();
+	while(fast.next && fast.next.next) {
 		fast = fast.next.next;
 		slow = slow.next;
-		if (slow === fast) {
+		if (fast === slow) {
 			return true;
 		}
 	}
+
 	return false;
 }
 module.exports = circular;
@@ -40,14 +42,19 @@ module.exports = circular;
 
 
 
-    // let slow = list.getFirst();
-    // if (!slow.next) { return false; }
-    // let fast = slow.next;
-    // while (fast.next && fast.next.next) {
-    //     if (slow === fast) {
-    //         return true;        
-    //     }
-    //     slow = slow.next;
-    //     fast = fast.next.next;
-    // }
-    // return false;
+
+	// function circular(list) {
+	// 	let slow = list.getFirst();
+	// 	let fast = list.getFirst();
+	  
+	// 	while (fast.next && fast.next.next) {
+	// 	  slow = slow.next;
+	// 	  fast = fast.next.next;
+	  
+	// 	  if (slow === fast) {
+	// 		return true;
+	// 	  }
+	// 	}
+	  
+	// 	return false;
+	//   }

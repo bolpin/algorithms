@@ -233,6 +233,14 @@ describe('RemoveAt', () => {
     expect(l.getAt(3).data).toEqual(4);
     expect(l.size()).toEqual(4);
   });
+
+  test('removeAt works on a one-element list', () => {
+    const l = new List();
+    l.insertLast(1);
+    l.removeAt(0);
+    expect(l.getAt(0)).toEqual(null);
+  });
+
 });
 
 describe('InsertAt', () => {

@@ -1,6 +1,8 @@
+const { valueToNode } = require("@babel/types");
+
 class Node {
-	constructor(obj, next = null) {
-		this.data = obj;
+	constructor(data, next = null) {
+		this.data = data;
 		this.next = next;
 	}
 };
@@ -9,20 +11,20 @@ class LinkedList{
 	constructor() {
 		this.head = null;
 	}
-
+	
 	insertFirst(data) {
 		this.head = new Node(data, this.head);
 	}
 
 	size() {
 		let count = 0;
-		let iter = this.head;
-		while(iter) {
+		let node = this.head;
+		while(node) {
 			count++;
-			iter = iter.next;
+			node = node.next;
 		}
 		return count;
-	}
+	}	
 
 	getFirst() {
 		return this.head;
@@ -30,7 +32,7 @@ class LinkedList{
 
 	getLast() {
 		let node = this.head;
-		while (node && node.next) {
+		while(node && node.next) {
 			node = node.next;
 		}
 		return node;
@@ -41,96 +43,99 @@ class LinkedList{
 	}
 
 	removeFirst() {
-		if (this.head) {
-			this.head = this.head.next;
-		}	
-	}
-
-	removeLast() {
-		// empty list
 		if (!this.head) {
 			return;
 		}
-		// length 1
-		if (!this.head.next) {
-			this.head = null; 
-			return;
+		this.head = this.head.next;
+		return;
+	}
+
+	removeLast() {
+		if (!this.head) {
+			return null;
 		}
-		// normal case
-		let prev = this.head;
-		while(prev.next && prev.next.next) {
-			prev = prev.next;
+		let node = this.head;
+		if (!node.next) {
+			this.head = null;
 		}
-		prev.next = null;
+		while (node.next && node.next.next) {
+			node = node.next;
+		}
+		node.next = null;
 	}
 
 	insertLast(data) {
-		 if (!this.head) {
-			 this.insertFirst(data);
-			 return;
-		 }
-		 let last = this.getLast();
-		 last.next = new Node(data); 
-	 }
+		if (!this.head) {
+			this.head = new Node(data);
+			return;
+		}
+		let node = this.head;
+		while(node && node.next) {
+			node = node.next;
+		}
+		node.next = new Node(data);
+		return;
+	}
 
 	getAt(index) {
-		if (index < 0) {
-			return null; //throw an exception?
+		if (!this.head || index < 0) {
+			return null;
 		}
-		// consider index out of range
-		let i = 0;
+		if (index === 0) {
+			return this.head;
+		}
 		let node = this.head;
-		while (node && i < index) {
+		let count = 0;
+		while(node && count < index) {
 			node = node.next;
-			i++;
+			count++;
 		}
 		return node;
 	}
 
 	removeAt(index) {
-		// index out of range -> return undefined
-		// empty list
-		if (!this.head || index < 0) {
-			return;
+		// index out-of-range
+		// if (!this.head || index < 0 || index >= this.size()) {
+		if (!this.head || index < 0 || index >= this.size()) {
+			return null;
 		}
 		// index === 0
 		if (index === 0) {
 			this.head = this.head.next;
 			return;
 		}
-		// normal case
-		let prev = this.getAt(index-1); 
-		if (prev && prev.next) {
-			prev.next = prev.next.next;
-		}
+		let prev = this.getAt(index-1);
+		prev.next = prev.next.next;
+		return;
 	}
 
 	insertAt(data, index) {
-		if (index === 0 || !this.head) {
+		if (!this.head || index === 0) {
 			this.head = new Node(data, this.head);
 			return;
 		}
-		let prev = this.getAt(index - 1) || this.getLast();
+		const prev = this.getAt(index-1) || this.getLast();
 		prev.next = new Node(data, prev.next);
-	}
-
-	forEach(fn) {
-		let node = this.head;
-		let i = 0;
-		while(node) {
-			fn(node, i);
-			node = node.next;
-		}
+		return;
 	}
 
 	*[Symbol.iterator]() {
 		let node = this.head;
 		while(node) {
-			yield(node);
+			yield(node);	
 			node = node.next;
 		}
-
 	}
+
+	forEach(fn) {
+		let node = this.head;
+		let idx = 0;
+		while(node) {
+			fn(node, idx);
+			node = node.next;
+		}
+	}
+	
 };
 
 
