@@ -60,6 +60,7 @@ function objectFun() {
 	targetObj.saySomething();
 	targetObj.sayName();
 
+	
 }
 
 objectFun();
