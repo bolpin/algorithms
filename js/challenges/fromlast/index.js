@@ -13,16 +13,16 @@
 
 
 function fromLast(list, n) {
-	let fast = list.head;
-	let slow = fast;
-	for (let i = 0; i < n; i++) {
-		fast = fast.next;
-	}
-	while (fast.next) {
-		fast = fast.next;
-		slow = slow.next;
-	}
-	return slow;
+  let node = list.head;
+  for (let i = n; i > 0; i--) {
+    node = node.next;
+  }
+  let slow = list.head;
+  while (node.next) {
+    node = node.next;
+    slow = slow.next;
+  }
+  return slow;
 }
 
 module.exports = fromLast;

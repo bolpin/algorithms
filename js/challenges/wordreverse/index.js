@@ -5,33 +5,30 @@
 // --- Examples
 //   reverse('I am fine') === 'fine am I'
 
+//   "I am Brian"
+//              ^
+//   "I am Brian"
+//        |     ^
+//       space
+// buf = "Brian"
+//   "I am Brian"
+//        |
+//        ^
+
+
+  
 function reverseWords(str) {
-	let buffer = [];
-
-	let tokenReadPos = str.length - 1;
-	let wordReadPos = null;
-	let wordEndPos = null;
-
-	while (tokenReadPos >= 0) {
-		if (str[tokenReadPos] === ' ') {
-			buffer.push(str[tokenReadPos]);
-			tokenReadPos--;
-		} else {
-			wordEndPos = tokenReadPos;
-			while (tokenReadPos >= 0 && str[tokenReadPos] != ' ') {
-				tokenReadPos--;
-			}
-			wordReadPos = tokenReadPos + 1;
-			while (wordReadPos <= wordEndPos) {
-				buffer.push(str[wordReadPos]);
-				wordReadPos++;
-			}
-		}
-	}
-	for (let i = str.length - 1; i >= 0; i--) {
-	}
-	return buffer.join('');
+  const reverseChars = (chars) => chars.split('')
+    .reduce( (result, c) => {
+      return c + result;
+    }, '')
+  return reverseChars(str)
+    .split(' ') 
+    .map( c => reverseChars(c), '')
+    .filter( c => c !== '')
+    .join(' ')
 }
+
 
 // SOLUTION 1
 // use a buffer
@@ -89,8 +86,6 @@ function reverseWords(str) {
 // 	}).join(' ');
 // }
 
-
-console.log(reverseWords("Brian Olpin"));
 
 module.exports = reverseWords;
 

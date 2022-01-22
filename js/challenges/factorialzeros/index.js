@@ -1,6 +1,6 @@
 // --- Directions
 // Write a function which takes an integer n, and returns the
-// number of trailing zeros in n!
+// number of trailing zeros in n! (n factorial)
 
 // var f = [];
 // function factorial (n) {
@@ -15,18 +15,30 @@
 // and multiple of 5, there will be an
 // additional zero at the end.
 const trailingZeros = (n) => {
-	let count = 0;
-	for (let i = n ; i > 1; i--) {
-		let mult = i;
-		while(mult % 5 === 0) {
-			count++;
-			mult = mult/5;
-		}	
-	}
-	return count;
+    let factorsOfFive = 0;
+    for (let multiplier = n; multiplier > 1; multiplier--) {
+      let m = multiplier;
+      while(m % 5 === 0) {
+        factorsOfFive++;
+        m = m / 5;
+      }
+    }
+    return factorsOfFive;
 }
 
 module.exports = trailingZeros;
+
+// const trailingZeros = (n) => {
+//     let factorsOfFive = 0;
+//     for(let i = n; i > 1; i--) {
+//         let multiplier = i;
+//         while(multiplier % 5 === 0) {
+//             factorsOfFive++;
+//             multiplier /= 5;
+//         }
+//     }
+//     return factorsOfFive;
+// }
 
 
 // const trailingZeros = (n) => {

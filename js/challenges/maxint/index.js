@@ -28,9 +28,9 @@ const maxNaive = (a, b) => {
 	const bFactor = overflowRisk * negA + overflowSafe * negDiff;
 	const aFactor = flip(bFactor);
 
-	console.log(negA + "|" + negB + "|" + negDiff + "   " +
-				overflowRisk + "|" + overflowSafe + "    " +
-				a + ":" + aFactor + ":" + b + ":" + bFactor);
+	// console.log(negA + "|" + negB + "|" + negDiff + "   " +
+	// 			overflowRisk + "|" + overflowSafe + "    " +
+	// 			a + ":" + aFactor + ":" + b + ":" + bFactor);
 	return a * aFactor + b * bFactor; 
 }
 

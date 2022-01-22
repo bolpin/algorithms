@@ -21,39 +21,46 @@
 // 2 -> _ # _
 // 2 -> # # #
 
+function pyramidLevel(ar, step) {
+  const brickSymbol = '#'
+  // const midpoint = n - 1;
+  const midpoint = Math.floor(ar.length / 2);
+  if (step > midpoint) {
+    return;
+  }
+  ar[midpoint + step] = brickSymbol;
+  ar[midpoint - step] = brickSymbol;
+  console.log(ar.join(''));
+  pyramidLevel(ar, step+1)
+}
+
 function pyramid(n) {
-	// const width = 2*n-1;
-	for (let i = 0; i < n; i++) {
-		const space = new Array(n-1-i).fill(' ');
-		const bricks = new Array(1 + (2*i)).fill('#');
-		console.log([...space, ...bricks, ...space].join(''));
-	}
-	return;
+  const size = 2*n - 1;
+  const ar = new Array(size).fill(' ');
+  const step = 0;
+  pyramidLevel(ar, step);
 }
 
 
-pyramid(4);
 // RECURSIVE SOLUTION
-// function pyramid(n, row='', layer=0) {
-//     if(layer === n) { return; }
-//     const strLen = 2*n - 1;
-//     const midPoint = Math.floor(strLen/2);
-
-//     let col = row.length;
-//     if (col === strLen) {
-//         console.log(row);
-//         return pyramid(n, '', layer + 1);
-//     }
-
-//     if (col >= midPoint - layer && col <= midPoint + layer) {
-//         row += '#';
-//     } else {
-//         row += ' ';
-//     }
-
-//     return pyramid(n, row, layer);
+// function pyramidLevel(ar, step) {
+//   const brickSymbol = '#'
+//   // const midpoint = n - 1;
+//   const midpoint = Math.floor(ar.length / 2);
+//   if (step > midpoint) {
+//     return;
+//   }
+//   ar[midpoint + step] = brickSymbol;
+//   ar[midpoint - step] = brickSymbol;
+//   console.log(ar.join(''));
+//   pyramidLevel(ar, step+1)
 // }
 
-
+// function pyramid(n) {
+//   const size = 2*n - 1;
+//   const ar = new Array(size).fill(' ');
+//   const step = 0;
+//   pyramidLevel(ar, step);
+// }
 
 module.exports = pyramid;

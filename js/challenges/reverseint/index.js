@@ -9,21 +9,11 @@
 //   reverseInt(-90) === -9
 
 function reverseInt(num) {
-
-	let reversed = 0;
-	let n = Math.abs(num);
-	while(n > 0) {
-		let a = n % 10
-		n = Math.floor(n/10);
-		reversed = reversed * 10 + a;
-	}
-
-	let sign = num < 0 ? -1 : 1;
-
-	return sign * reversed;
+  const sign = Math.sign(num);
+  let abs = Math.abs(num);
+  return sign * parseInt(`${abs}`.split('').reverse().join('')); 
 }
 
-console.log(reverseInt(-981));
 
 
 

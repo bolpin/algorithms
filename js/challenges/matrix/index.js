@@ -32,54 +32,49 @@ const { arrayTypeAnnotation } = require("@babel/types");
 // 2, 1, 1, 1 DONE
 
 function matrix(n) {
-	let matrix = new Array(n);
-	for (let i = 0; i < n; i++) {
-		matrix[i] = new Array(n).fill(0);
-	}
-	let maxCol = n-1;
-	let maxRow = n-1;
-	let minCol = 0;
-	let minRow = 0;
 
-	let num = 1;
-	console.log(matrix);
+  const matrix = [];
+  for(let i = 0; i < n; i++) {
+    matrix.push(new Array(n).fill(0));
+  }
 
-	while (maxCol >= minCol && maxRow >= minRow) {
-		// across ->
-		for(let i = minCol; i <= maxCol; i++) {
-			matrix[minRow][i] = num;
-			num++;
-		}
-		minRow++;
+  let minX = 0;
+  let minY = 0;
+  let maxX = n-1;
+  let maxY = n-1;
+  let val = 1;
 
-		// down
-		for(let i = minRow; i <= maxRow ;i++) {
-			matrix[i][maxCol] = num;
-			num++;
-		}
-		maxCol--;
+  while (minX <= maxX && minY <= maxY) {
+    for (let i = minX; i <= maxX; i++) {
+      matrix[minY][i] = val;
+      val++;
+    }
+    minY++;
 
-		// across <-
-		for(let i = maxCol; i >= minCol; i--) {
-			matrix[maxRow][i] = num;
-			num++;
-		}
-		maxRow--;
+    for (let i = minY; i <= maxY; i++) {
+      matrix[i][maxX] = val;
+      val++;
+    }
+    maxX--;
 
-		// up
-		for(let i = maxRow; i >= minRow; i--) {
-			matrix[i][minCol] = num;
-			num++;
-		}
-		minCol++;
-	}
-	
+    for (let i = maxX; i >= minX; i--) {
+      matrix[maxY][i] = val;
+      val++;
+    }
+    maxY--;
+
+    for (let i=maxY; i >= minY; i--) {
+      matrix[i][minX] = val;
+      val++;
+    }
+    minX++;
+  }
 	return matrix;
+
 }
 
-// let m = new matrix(4);
-
-
+// let m = matrix(4);
+// console.log(m)
 
 
 

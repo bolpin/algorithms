@@ -7,15 +7,6 @@
 // best/avg/worst = 1/n^2/n^2 (with numSwaps optimization)
 
 function bubbleSort(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		for(let j = 0; j < arr.length-i; j++) {
-			if (arr[j] > arr[j+1]) {
-				const tmp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = tmp;
-			}
-		}
-	}
     return arr;
 }
 
@@ -25,19 +16,6 @@ function bubbleSort(arr) {
 // unstable
 // best/avg/worst = n^2/n^2/n^2
 function selectionSort(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		let smallest = i;
-		for (let j = i+1; j < arr.length; j++) {
-			if (arr[j] < arr[smallest]) {
-				smallest = j;
-			}	
-		}
-		if (i !== smallest) {
-			let tmp = arr[smallest];
-			arr[smallest] = arr[i];
-			arr[i] = tmp;
-		}
-	}
     return arr;
 }
 
@@ -46,24 +24,9 @@ function selectionSort(arr) {
 // not in-place; uses a fair amount of memory (O(n))
 // best/avg/worst = nlog(n)/nlog(n)/nlog(n) 
 function mergeSort(arr) {
-	if (arr.length < 2) { return arr; }
-	const midpoint = Math.floor(arr.length / 2);
-	const left = arr.slice(0, midpoint);
-	const right = arr.slice(midpoint);
-
-	return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
-	let merged = [];
-	while(left.length && right.length){
-		if (left[0] < right[0]) {
-			merged.push(left.shift());
-		} else {
-			merged.push(right.shift());
-		}
-	}
-	return [...merged, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };

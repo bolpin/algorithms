@@ -17,13 +17,14 @@
 // [] -> [MID] -> [] -> [] -> /
 
 function midpoint(list) {
-	let slow = list.head;
-	let fast = list.head;
-	while(fast.next && fast.next.next) {
-		fast = fast.next.next;
-		slow = slow.next;
-	}
-	return slow;
+  let fast = list.head;
+  let slow = list.head;
+
+  while (fast.next && fast.next.next) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return slow;
 }
 
 module.exports = midpoint;
@@ -34,7 +35,7 @@ module.exports = midpoint;
 // function midpoint(list) {
 // 	let fast = list.head;
 // 	let slow = list.head;
-// 	while (fast && fast.next && fast.next.next) {
+// 	while (fast.next && fast.next.next) {
 // 		fast = fast.next.next;
 // 		slow = slow.next;
 // 	}

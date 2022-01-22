@@ -9,9 +9,15 @@
 
 
 function vowels(s) {
-	let matches = s.match(/[aeiou]/gi);
-	return matches ? matches.length : 0;
+  const matches = s.match(/[aeiou]/gi);
+  if (matches) {
+    return matches.length;
+  } else {
+    return 0;
+  }
+
 }
+
 
 module.exports = vowels;
 

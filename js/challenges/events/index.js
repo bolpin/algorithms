@@ -4,27 +4,30 @@
 // have methods 'on', 'trigger', and 'off'.
 
 class Events {
-	constructor() {
-		this.events = {};
-	}
-	
-	on(event, fn) {
-		if (this.events[event]) {
-			this.events[event].push(fn);
-		} else {
-			this.events[event] = [fn];
-		}
-	}
+  constructor() {
+    this.events = {};
+  }
 
-	trigger(event) {
-		for (let fn of this.events[event]) {
-			fn();
-		}
-	}
+  on(event, fn) {
+    if (this.events[event]) {
+      this.events[event].push(fn);
+    }
+    else {
+      this.events[event] = [fn];
+    }
+  }
 
-	off(event) {
-		this.events[event] = [];
-	}
+  trigger(event) {
+    if (this.events[event]) {
+      for (let f of this.events[event]) {
+        f();
+      }
+    }
+  }
+
+  off(event) {
+    this.events[event] = undefined;
+  }
 }
 
 module.exports = Events;

@@ -9,53 +9,17 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 const buildCharMap = (str) => {
-	const map = new Map();
-	for (const c of str) {
-		if (map.has(c)) {
-			map.set(c, map.get(c) + 1);
-		} else {
-			map.set(c, 1);
-		}
-	}
 	return map;
 }
 
-const clean = (str) => str
-	.toLowerCase()
-	.replace(/[^\w]/g, '')
-	.split('')
-	.sort()
-	.join('')
+const clean = (str) => str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 
 function anagrams(stringA, stringB) {
-	console.log(clean(stringA));
-	console.log(clean(stringB));
-	return clean(stringA) === clean(stringB);		
+  return clean(stringA) === clean(stringB);
 }
 
-function anagrams2(stringA, stringB) {
-	const mapA = buildCharMap(stringA);
-	const mapB = buildCharMap(stringB);
+// console.log(anagrams("a$$$b", "b . @@a" )) 
 
-	console.log(mapA.size);
-	console.log(mapB.size);
-
-	if (mapA.size !== mapB.size) {
-		return false;
-	}
-
-	mapA.forEach(function(val, key) {
-		let bVal = mapB.get(key);
-		if (mapB.get(key) !== val) {
-			console.log(bVal + " " + val);
-			return false;
-		}
-	});
-	return true;
-}
-
-console.log(anagrams("he --llo", "lo hel"));
-console.log(anagrams("hhahello", "lo  hel"));
 module.exports = anagrams;
 
 

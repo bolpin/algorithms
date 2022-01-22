@@ -19,11 +19,6 @@
 
 
 function overlay(num, target, startIdx, endIdx) {
-	let mask = 0;
-	for (let i = startIdx; i <= endIdx; i++) {
-		mask = mask | (1 << i);
-	}
-	mask = ~mask;
 
 	// console.log("---");
 	// logBinary(mask);

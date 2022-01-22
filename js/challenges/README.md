@@ -6,5 +6,5 @@ This is a great course: https://www.udemy.com/course/coding-interview-bootcamp-a
 
 To run tests:
 ```
-  jest ./<some-folder> --watch
+  jest ./<some-subdirectory> --watch
 ```

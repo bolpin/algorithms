@@ -18,17 +18,33 @@
 //       '### '
 //       '####'
 
+function oneStep(ar, level) {
+  // exit condition
+  if (level >= ar.length) {
+    return;
+  }
 
+  // do it
+  ar[level] = '#';
+  console.log(ar.join(''));
 
+  // recursive call
+  oneStep(ar, level + 1);
+}
+
+function steps(n) {
+  let ar = new Array(n).fill(' ');
+  oneStep(ar, 0);
+}
 
 // try recursive next
-function steps(n) {
-	for (let i = 0; i < n; i++) {
-		const blocks = new Array(i+1).fill('#');
-		const spaces = new Array(n-i-1).fill(' ');
-		console.log([...blocks, ...spaces].join(''));
-	}
-}
+// function steps(n) {
+//   const arr = new Array(n).fill(' ');
+//   for (let i = 0; i < n; i++) {
+//     arr[i] = '#';
+//     console.log(arr.join(''));
+//   }
+// }
 
 
 // steps(4);

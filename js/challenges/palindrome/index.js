@@ -8,7 +8,7 @@
 //   palindrome("abcdefg") === false
 
 function palindrome(str) {
-	return str.split('').every((c, i) => c === str[str.length - 1 -i] )
+  return str === str.split('').reverse().join('');
 }
 
 module.exports = palindrome;
