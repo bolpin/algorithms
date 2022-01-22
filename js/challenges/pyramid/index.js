@@ -21,25 +21,29 @@
 // 2 -> _ # _
 // 2 -> # # #
 
-function pyramidLevel(ar, step) {
-  const brickSymbol = '#'
-  // const midpoint = n - 1;
-  const midpoint = Math.floor(ar.length / 2);
-  if (step > midpoint) {
+// recursive
+function pyramidLevel(arr, step) {
+  const brick = '#';
+  const midpoint = Math.floor(arr.length / 2);
+  // halt condition
+  if (step > midpoint ) {
     return;
   }
-  ar[midpoint + step] = brickSymbol;
-  ar[midpoint - step] = brickSymbol;
-  console.log(ar.join(''));
-  pyramidLevel(ar, step+1)
+  arr[midpoint + step] = brick;
+  arr[midpoint - step] = brick;
+  console.log(arr.join(''));
+  // recursive call
+  return pyramidLevel(arr, step + 1)
 }
 
 function pyramid(n) {
   const size = 2*n - 1;
-  const ar = new Array(size).fill(' ');
-  const step = 0;
-  pyramidLevel(ar, step);
+  let arr = new Array(size).fill(' ');
+  pyramidLevel(arr, 0)
 }
+pyramid(1);
+pyramid(3);
+pyramid(4);
 
 
 // RECURSIVE SOLUTION

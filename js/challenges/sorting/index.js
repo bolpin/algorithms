@@ -3,11 +3,19 @@
 // in-place (memory O(1))
 // stable
 // lots of swaps
-// stable
 // best/avg/worst = 1/n^2/n^2 (with numSwaps optimization)
 
 function bubbleSort(arr) {
-    return arr;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i; j++) {
+      if (arr[j] > arr[j+1]) {
+        let tmp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = tmp;
+      }
+    }
+  }
+  return arr;
 }
 
 // "prove me wrong"
@@ -16,7 +24,20 @@ function bubbleSort(arr) {
 // unstable
 // best/avg/worst = n^2/n^2/n^2
 function selectionSort(arr) {
-    return arr;
+  for (let i = 0; i < arr.length; i++) {
+    let minimumIndex = i;
+    for (let j = i+1; j < arr.length; j++) {
+      if (arr[j] < arr[minimumIndex]) {
+        minimumIndex = j;
+      }
+    }
+    if (minimumIndex !== i) {
+      let tmp = arr[i];
+      arr[i] = arr[minimumIndex];
+      arr[minimumIndex] = tmp;
+    }
+  }
+  return arr;
 }
 
 // Highly parallelizable
@@ -24,9 +45,25 @@ function selectionSort(arr) {
 // not in-place; uses a fair amount of memory (O(n))
 // best/avg/worst = nlog(n)/nlog(n)/nlog(n) 
 function mergeSort(arr) {
+  if (arr.length === 1) {
+    return arr;
+  }
+  let midpoint = Math.floor(arr.length/2);
+  let left = arr.slice(0, midpoint);
+  let right = arr.slice(midpoint);
+  return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
+  let merged = [];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      merged.push(left.shift());
+    } else {
+      merged.push(right.shift());
+    }
+  }
+  return [...merged, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };

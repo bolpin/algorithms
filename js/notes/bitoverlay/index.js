@@ -31,6 +31,7 @@ function overlay(num, target, startIdx, endIdx) {
 	// console.log('');
 	// logBinary(num << startIdx);
 	// console.log("---");
+  const mask = 1;
 	const result = (target & mask) | (num << startIdx);
 	// logBinary(result);
 	// console.log("---");

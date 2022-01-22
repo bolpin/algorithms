@@ -6,6 +6,7 @@ function funWithSets() {
 	console.log(mySet.has('2'));
 	console.log(mySet.size);
 	// mySet.clear();
+	mySet.add('4');
 	mySet.add('5');
 
 	mySet.forEach(function(value) {
