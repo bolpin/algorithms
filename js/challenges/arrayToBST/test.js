@@ -1,68 +1,19 @@
-require('./index');
-const T = require('./tree');
-const Node = T.Node;
-const Tree = T.BSTree;
+const { Node } = require("./tree"); 
+const { buildNode, createBSTFromSortedArray } = require('./index');
+
 
 describe('Node', () => {
-  test('Node is a constructor', () => {
-    expect(typeof Node.prototype.constructor).toEqual('TODO');
+  test('createBSTFromSortedArray creates a minimal-height binary search tree', () => {
+    const minimalTree = createBSTFromSortedArray([1,2,3,4,5,6,7,8,9,10,11,12,13, 14, 15])
+    expect(minimalTree.data).toEqual(8);
+    expect(minimalTree.left.data).toEqual(4);
+    expect(minimalTree.left.left.data).toEqual(2);
+    expect(minimalTree.left.left.left.data).toEqual(1);
+    expect(minimalTree.left.left.right.data).toEqual(3);
+    expect(minimalTree.right.data).toEqual(12);
+    expect(minimalTree.right.right.data).toEqual(14);
+    expect(minimalTree.right.right.right.data).toEqual(15);
+    expect(minimalTree.right.right.left.data).toEqual(13);
   });
 
-  test('Node has a data and children properties', () => {
-    const n = new Node('a');
-    expect(n.data).toEqual('a');
-    expect(n.children.length).toEqual(0);
-  });
-
-  test('Node can add children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    expect(n.children[0].children).toEqual([]);
-  });
-
-  test('Node can remove children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    n.remove('b');
-    expect(n.children.length).toEqual(0);
-  });
-});
-
-describe('Tree', () => {
-  test('starts empty', () => {
-    const t = new Tree();
-    expect(t.root).toEqual(null);
-  });
-
-  test('Can traverse bf', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('c');
-    t.root.children[0].add('d');
-
-    t.traverseBF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
-  });
-
-  test('Can traverse DF', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('d');
-    t.root.children[0].add('c');
-
-    t.traverseDF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
-  });
 });

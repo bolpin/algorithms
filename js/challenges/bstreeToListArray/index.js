@@ -3,25 +3,12 @@
 
 const L = require("./list");
 const LinkedList = L.LinkedList;
-// const ListNode = L.Node;
 
 class Node {
 	constructor(data) {
 		this.data = data;
 		this.right = null;
 		this.left = null;
-	}
-
-	addLeft(data) {
-		this.left.push(new Node(data));
-	}
-
-	addRight(data) {
-		this.right.push(new Node(data));
-	}
-
-	removeLeft(data) {
-		this.children = this.children.filter((node) => data !== node.data )
 	}
 }
 
@@ -116,17 +103,17 @@ class BSTree {
 	}
 }
 
-const myTree = new BSTree();
-myTree.insert(4)
-myTree.insert(2)
-myTree.insert(8)
-myTree.insert(5)
-myTree.insert(0)
-myTree.insert(7)
-myTree.insert(2)
-myTree.insert(3)
-myTree.insert(8)
-myTree.insert(4)
+// const myTree = new BSTree();
+// myTree.insert(4)
+// myTree.insert(2)
+// myTree.insert(8)
+// myTree.insert(5)
+// myTree.insert(0)
+// myTree.insert(7)
+// myTree.insert(2)
+// myTree.insert(3)
+// myTree.insert(8)
+// myTree.insert(4)
 
 
 //           4
@@ -138,14 +125,14 @@ myTree.insert(4)
 //    2      4      7
 //                    \
 //                     8
-myTree.print();
+// myTree.print();
 
-let listAr = myTree.toArrayOfLists()
+// let listAr = myTree.toArrayOfLists()
 
-for (let i = 0; i < listAr.length; i++) {
-  console.log(listAr[i].head);
-  // console.log(`${i} : ${listAr[i].head}`);
-}
+// for (let i = 0; i < listAr.length; i++) {
+//   console.log(listAr[i].head);
+//   // console.log(`${i} : ${listAr[i].head}`);
+// }
 
 // const myList = new LinkedList();
 // myList.insertLast(5);

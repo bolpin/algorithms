@@ -2,16 +2,14 @@
 // 4.3
 // Given a sorted (increasing order) array, write an algorithm to create a binary search tree with minimal height.
 
-const BST = require("./tree");
-const Node = BST.Node;
-
+const { Node } = require("./tree");
 
 function buildNode(ar, start, end) {
   if (start > end) {return null;}
 
   const mid = Math.floor(start + (end-start)/2);
   let newNode = new Node(ar[mid]);
-  console.log(`${start} ${mid} ${end}`);
+  // console.log(`${start} ${mid} ${end}`);
   newNode.left = buildNode(ar, start, mid - 1);
   newNode.right = buildNode(ar, mid + 1, end);
 
@@ -37,8 +35,9 @@ function print(node) {
   print(node.right);
 }
 
-const minimalTree = createBSTFromSortedArray([1,2,3,4,5,6,7,8,9,10,11,12,13, 14, 15])
-print(minimalTree);
+module.exports = { createBSTFromSortedArray };
+
+// print(minimalTree);
 
 
 

@@ -1,68 +1,65 @@
-require('./index');
-const T = require('./tree');
-const Node = T.Node;
-const Tree = T.BSTree;
+const { isBalanced, isBalanced2 } = require('./index');
+const { Node, BSTree } = require('./tree');
 
-describe('Node', () => {
-  test('Node is a constructor', () => {
-    expect(typeof Node.prototype.constructor).toEqual('TODO');
+const unbalancedTree = new BSTree();
+unbalancedTree.insert(4)
+unbalancedTree.insert(2)
+unbalancedTree.insert(8)
+unbalancedTree.insert(5)
+unbalancedTree.insert(0)
+unbalancedTree.insert(7)
+unbalancedTree.insert(2)
+unbalancedTree.insert(3)
+unbalancedTree.insert(8)
+unbalancedTree.insert(4)
+//           4
+//        /     \
+//     2          8
+//   /   \       /
+// 0      3     5
+//   \      \     \
+//    2      4      7
+//                    \
+//                     8
+
+const balancedTree = new BSTree();
+balancedTree.insert(4);
+balancedTree.insert(2);
+balancedTree.insert(8);
+balancedTree.insert(0);
+balancedTree.insert(3);
+balancedTree.insert(5);
+balancedTree.insert(9);
+
+//           4
+//        /     \
+//     2          8
+//   /   \       / \
+// 0      3     5   9
+describe('isBalanced', () => {
+  test('An unbalanced tree is identified as such', () => {
+    expect(isBalanced(unbalancedTree.root)).toEqual(false);
   });
 
-  test('Node has a data and children properties', () => {
-    const n = new Node('a');
-    expect(n.data).toEqual('a');
-    expect(n.children.length).toEqual(0);
+  test('A balanced tree is identified as such', () => {
+    expect(isBalanced(balancedTree.root)).toEqual(true);
   });
 
-  test('Node can add children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    expect(n.children[0].children).toEqual([]);
-  });
-
-  test('Node can remove children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    n.remove('b');
-    expect(n.children.length).toEqual(0);
+  test('An empty tree is considered balanced', () => {
+    expect(isBalanced(null)).toEqual(true);
   });
 });
 
-describe('Tree', () => {
-  test('starts empty', () => {
-    const t = new Tree();
-    expect(t.root).toEqual(null);
+describe('isBalanced2 (an alternate implementation)', () => {
+  test('An unbalanced tree is identified as such', () => {
+    expect(isBalanced2(unbalancedTree.root)).toEqual(false);
   });
 
-  test('Can traverse bf', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('c');
-    t.root.children[0].add('d');
-
-    t.traverseBF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
+  test('A balanced tree is identified as such', () => {
+    expect(isBalanced2(balancedTree.root)).toEqual(true);
   });
 
-  test('Can traverse DF', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('d');
-    t.root.children[0].add('c');
-
-    t.traverseDF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
+  test('An empty tree is considered balanced', () => {
+    expect(isBalanced2(null)).toEqual(true);
   });
 });

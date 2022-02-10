@@ -1,67 +1,42 @@
 const T = require('./index');
 const Node = T.Node;
-const Tree = T.Tree;
+const BSTree = T.BSTree;
+const List = require('./list'); 
+
+
+//           4
+//        /     \
+//     2          8
+//   /   \       /
+// 0      3     5
+//   \      \     \
+//    2      4      7
+//                    \
+//                     8
+
+const myTree = new BSTree();
+myTree.insert(4)
+myTree.insert(2)
+myTree.insert(8)
+myTree.insert(5)
+myTree.insert(0)
+myTree.insert(7)
+myTree.insert(2)
+myTree.insert(3)
+myTree.insert(8)
+myTree.insert(4) 
+const result = myTree.toArrayOfLists();
 
 describe('Node', () => {
-  test('Node is a constructor', () => {
-    expect(typeof Node.prototype.constructor).toEqual('TODO');
-  });
-
-  test('Node has a data and children properties', () => {
-    const n = new Node('a');
-    expect(n.data).toEqual('a');
-    expect(n.children.length).toEqual(0);
-  });
-
-  test('Node can add children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    expect(n.children[0].children).toEqual([]);
-  });
-
-  test('Node can remove children', () => {
-    const n = new Node('a');
-    n.add('b');
-    expect(n.children.length).toEqual(1);
-    n.remove('b');
-    expect(n.children.length).toEqual(0);
-  });
-});
-
-describe('Tree', () => {
-  test('starts empty', () => {
-    const t = new Tree();
-    expect(t.root).toEqual(null);
-  });
-
-  test('Can traverse bf', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('c');
-    t.root.children[0].add('d');
-
-    t.traverseBF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
-  });
-
-  test('Can traverse DF', () => {
-    const letters = [];
-    const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('d');
-    t.root.children[0].add('c');
-
-    t.traverseDF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
+  test('toArrayOfLists', () => {
+    expect(result.length).toEqual(5);
+    expect(result[0].head.data).toEqual(4);
+    expect(result[0].size()).toEqual(1);
+    expect(result[2].size()).toEqual(3);
+    expect(result[3].size()).toEqual(3);
+    expect(result[3].getFirst().data).toEqual(2);
+    expect(result[3].getFirst().next.data).toEqual(4);
+    expect(result[3].getLast().data).toEqual(7);
+    expect(result[4].size()).toEqual(1);
   });
 });
