@@ -1,13 +1,9 @@
 // --- Directions
-// Given a node, validate the binary search tree,
-// NOTE: this is an in-order traversal solution.
-// An alternate solution is found in the validate folder
+// 4.6
+// Write an algorithm to find the 'next' node (i.e., in-order successor) of a given node in a binary search tree. You may assume that each node has a link to its parent.
+
 const { print, Node } = require('./node');
 
-
-// if node.right, return leftmostNode(node.right)
-// while (node === node.parent.right) {
-//   node = node.parent
 
 function leftmostNodeOf(node) {
   if (!node) { return null; }

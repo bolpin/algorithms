@@ -51,33 +51,6 @@ class BSTree {
     })
   }
 
-	// traverseBF(fn) {
-  //   let nodes = [this.root];
-  //   while (nodes.length) {
-  //     let node = nodes.shift();
-  //     if (node && node.left) {
-  //       nodes.push(node.left);
-  //     }
-  //     if (node && node.right) {
-  //       nodes.push(node.right);
-  //     }
-  //     fn(node);
-  //   }
-	// }
-
-	// traverseDF(fn) {
-  //   let nodes = [this.root];
-  //   while (nodes.length) {
-  //     let node = nodes.shift();
-  //     if (node && node.left) {
-  //       nodes.unshift(node.left);
-  //     }
-  //     if (node && node.right) {
-  //       nodes.unshift(node.right);
-  //     }
-  //     fn(node);
-  //   }
-	// }
 }
 
 module.exports = { Node, BSTree };

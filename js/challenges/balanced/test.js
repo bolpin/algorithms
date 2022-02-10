@@ -30,12 +30,12 @@ balancedTree.insert(0);
 balancedTree.insert(3);
 balancedTree.insert(5);
 balancedTree.insert(9);
-
 //           4
 //        /     \
 //     2          8
 //   /   \       / \
 // 0      3     5   9
+
 describe('isBalanced', () => {
   test('An unbalanced tree is identified as such', () => {
     expect(isBalanced(unbalancedTree.root)).toEqual(false);
