@@ -8,3 +8,17 @@ To run tests:
 ```
   jest ./<some-subdirectory> --watch
 ```
+Here's a little program to pick up some problems to work on today:
+```
+#!/usr/bin/env ruby
+Dir.chdir('<your-challenges-folder>') do
+  directories = Dir.glob('*').select { |f| File.directory? f }
+
+  puts "There are #{directories.length} folders"
+  puts "Your challenges for today are:"
+  puts "  * " + directories.sample();
+  puts "  * " + directories.sample();
+  puts "  * " + directories.sample();
+end
+
+```
