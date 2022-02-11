@@ -13,14 +13,14 @@
 
 
 function fromLast(list, n) {
-  let node = list.head;
-  for (let i = n; i > 0; i--) {
-    node = node.next;
-  }
   let slow = list.head;
-  while (node.next) {
-    node = node.next;
+  let fast = list.head;
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+  while (fast.next) {
     slow = slow.next;
+    fast = fast.next;
   }
   return slow;
 }
@@ -37,20 +37,15 @@ module.exports = fromLast;
 
 
 
-
-
-
-
-
-// // function fromLast(list, n) {
-// //     let slow = list.getFirst();
-// //     let fast = slow;
-// //     for (let i = 0; i < n; i++){
-// //         fast = fast.next;
-// //     }
-// //     while (fast.next) {
-// //         fast = fast.next;
-// //         slow = slow.next;
-// //     }
-// //     return slow;
-// // }
+// function fromLast(list, n) {
+//     let slow = list.getFirst();
+//     let fast = slow;
+//     for (let i = 0; i < n; i++){
+//         fast = fast.next;
+//     }
+//     while (fast.next) {
+//         fast = fast.next;
+//         slow = slow.next;
+//     }
+//     return slow;
+// }

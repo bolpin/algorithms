@@ -53,6 +53,12 @@ function funWithArrays() {
     let ar4 = Array.of('a', 'b', 'c', 'd', 'e');
     console.log(ar4);
     ar4.copyWithin(2);
+    // copy to index 0 the element at index 3
+    console.log(ar4.copyWithin(0, 3, 4));
+
+    // copy to index 1 all elements from index 3 to the end
+    console.log(ar4.copyWithin(1, 3));
+
     console.log(ar4);
     console.log(ar4.length);
     console.log(ar4.byteLength); // undefined
