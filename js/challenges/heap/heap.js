@@ -119,4 +119,6 @@ class MinHeap extends GenericHeap {
   }
 }
 
-module.exports = { MaxHeap, MinHeap };
+
+
+module.exports = { MaxHeap, MinHeap, GenericHeap };

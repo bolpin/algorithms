@@ -22,6 +22,12 @@ class MaxHeap {
     this.#restoreUp(this.size);
   }
 
+  insertArray(ar) {
+    for(val of ar) {
+      this.insert(val);
+    }
+  }
+
   #restoreUp(i) {
     while (this.#isLess(Math.floor(i/2), i)) {
       this.#exch(Math.floor(i/2), i);
