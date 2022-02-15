@@ -8,22 +8,17 @@
 // benefit of having later O(1) lookups of any word
 // we're interested in
 const buildWordCounts = function(ar){
-	const wordCounts = {};
-	for (let word of ar) {
-		wordCounts[word] = wordCounts[word] || 1
-	}
-	return wordCounts;
+  const wordCounts = {};
+  for (let word of ar) {
+    wordCounts[word] = wordCounts[word]+1 || 1;
+  }
+  return wordCounts;
 }
 
 const wordCount = function(ar, word) {
-	const wordCounts = buildWordCounts(ar);
-	if (wordCounts[word]) {
-		return wordCounts[word];
-	}
-	return 0;
+  const wordCounts = buildWordCounts(ar);
+  return wordCounts[word] || 0;
 }
 
-const book = "It was a dark and stormy night and the stars were not shining bright. The end".replace(/[^\w\s]/, '').toLowerCase().split(/\s/)
-console.log(book);
 
-console.log(wordCount(book, 'stars'));
+module.exports = { wordCount };

@@ -65,7 +65,6 @@ const intToString100 = function(n) {
   result += " " + ones[(n / 10) - 1];
 }
 
-
 const intToString = function(n) {
   if (n < 0) {
     return `Negative ${intToString(-1 * n)}`;
@@ -89,8 +88,9 @@ const intToString = function(n) {
 
 // console.log(verboseInteger(3234430202001) === "three trillion, two hundred thirty four billion, four hundred thirty million, two hundred two thousand one")
 // console.log(verboseInteger(3000000000051) === "three trillion, fifty one")
-for (let x of [0, 19, 20, 96, 100, 831, 1000, 1019, 98015432, -1, 9999999999999990]) {
-  console.log(x)
-  console.log(intToString(x));
-}
+// for (let x of [0, 19, 20, 96, 100, 831, 1000, 1019, 98015432, -1]) {
+//   console.log(x)
+//   console.log(intToString(x));
+// }
 
+module.exports = { intToString }

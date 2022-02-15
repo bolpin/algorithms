@@ -8,12 +8,12 @@ const maxContiguousSum = function(intArray) {
 	for (let i = 0; i < intArray.length; i++) {
 		for (let j = i; j <= intArray.length; j++) {
 			const tmp = intArray.slice(i, j).reduce((sum, el) => sum + el, 0);
-			console.log(intArray.slice(i, j));
+			// console.log(intArray.slice(i, j));
 			if (tmp > maxSum) {
 				maxSum = tmp;
 			}
 		}
-		console.log(maxSum);
+		// console.log(maxSum);
 	}
 	return maxSum;
 }
@@ -28,11 +28,13 @@ const bookMaxContiguousSum = function(ar) {
 		} else if (sum < 0) {
 			sum = 0;
 		}
-		console.log(`${sum}   ${maxSum}`);
+		// console.log(`${sum}   ${maxSum}`);
 	}
 	return maxSum;
 }
 
-console.log(maxContiguousSum([2, 3, -8, -1, 2, 4, -2, 3]));
-console.log(maxContiguousSum([100, -5, 1, -5, 1, -5, 100]));
-console.log(bookMaxContiguousSum([100, -5, 6, -99, -5, 1, -5, 100]));
+// console.log(maxContiguousSum([2, 3, -8, -1, 2, 4, -2, 3]));
+// console.log(maxContiguousSum([100, -5, 1, -5, 1, -5, 100]));
+// console.log(bookMaxContiguousSum([100, -5, 6, -99, -5, 1, -5, 100]));
+
+module.exports = { maxContiguousSum };
