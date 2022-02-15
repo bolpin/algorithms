@@ -6,14 +6,6 @@ class MaxHeap {
     this.size = this.data.length-1;
   }
 
-  insert(val) {
-    console.log(`\nInserting:  ${val}\n`);
-    this.size++;
-    this.data[this.size] = val;
-    this.#restoreUp(this.size);
-    this.printHeap();
-  }
-
   #isLess(i, j) {
     return this.data[i] < this.data[j];
   }
@@ -24,11 +16,29 @@ class MaxHeap {
     this.data[j] = tmp;
   }
 
+  insert(val) {
+    this.size++;
+    this.data[this.size] = val;
+    this.#restoreUp(this.size);
+  }
+
   #restoreUp(i) {
-    while (i > 1 && this.#isLess(i/2, i)) {
-      this.#exch(i/2, i);
-      i = i/2;
+    while (this.#isLess(Math.floor(i/2), i)) {
+      this.#exch(Math.floor(i/2), i);
+      i = Math.floor(i/2);
     }
+  }
+
+  deleteRoot() {
+    if (this.size === 0) {
+      throw "Heap is empty";
+    }
+    const result = this.data[1];
+    this.#exch(1, this.size)
+    this.size--;
+    this.data[this.size+1] = null;
+    this.#restoreDown(1);
+    return result;
   }
 
   #restoreDown(i) {
@@ -43,18 +53,6 @@ class MaxHeap {
       this.#exch(i, j);
       i = j;
     }
-  }
-
-  deleteRoot() {
-    if (this.size === 0) {
-      throw("Heap is empty");
-    }
-    const result = this.data[1];
-    this.#exch(1, this.size)
-    this.size--;
-    this.data[this.size+1] = null;
-    this.#restoreDown(1);
-    return result;
   }
 
   print() {
@@ -86,17 +84,20 @@ class MaxHeap {
   }
 }
 
+module.exports = { MaxHeap };
 let heap = new MaxHeap();
-let origAr = [15,98,12,70,47,86,30,48,70,82];
 
-for (let i = 0; i < origAr.length; i++) {
-  heap.insert(origAr[i]);
-}
-// for (let i = 10; i > 0; i--) {
-//   const val = Math.floor(Math.random() * 100);
-//   origAr.push(val);
-//   heap.insert(val);
+// let origAr = [15,98,12,70,47,86,30,48,70,82];
+// for (let i = 0; i < origAr.length; i++) {
+//   heap.insert(origAr[i]);
 // }
+
+let origAr = [];
+for (let i = 10; i > 0; i--) {
+  const val = Math.floor(Math.random() * 100);
+  origAr.push(val);
+  heap.insert(val);
+}
 
 let sortedAr = origAr.sort( (a,b) => b - a );
 console.log(sortedAr);
