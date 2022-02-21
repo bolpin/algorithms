@@ -5,49 +5,37 @@ test('codeMatcher function is defined', () => {
 });
 
 test('codeMatcher matches codes', () => {
-  const codes = [['a', 'a'], ['b', '*', 'e']];
-  const pattern = 'aaeb*e'.split('');
+  const codes = ['a a', 'b * e'];
+  const pattern = 'aacbce'.split('');
 
   expect(codeMatcher(codes, pattern)).toEqual(1);
 });
 
 test('codeMatcher does not match when order is wrong', () => {
-
-  const codes = [['a', 'a'], ['b', '*', 'e']];
+  const codes = ['b * e', 'a a'];
   const pattern = 'aacbce'.split('');
 
   expect(codeMatcher(codes, pattern)).toEqual(0);
 });
 
-test('codeMatcher does not match when order is wrong', () => {
-
-  const codes = [['b', '*', 'e'],['a', 'a']];
-  const pattern = 'aacbce'.split('');
-
-  expect(codeMatcher(codes, pattern)).toEqual(0);
-});
-
-test('codeMatcher requires that wildcard match one and only one element', () => {
-
-  const codes = [['a', 'a'], ['b', '*', 'e']];
-  const pattern = 'caacbe'.split('');
+test('codeMatcher requires that wildcard match one and only one', () => {
+  const codes = ['a a', 'b * e'];
+  const pattern = 'aacbcce'.split('');
 
   expect(codeMatcher(codes, pattern)).toEqual(0);
 });
 
-test('codeMatcher that wildcard match one and only one element', () => {
-
-  const codes = [['a', 'a'], ['a', 'a', '*']];
-  const pattern = 'caacaace'.split('');
+test('codeMatcher requires that wildcard match one and only one', () => {
+  const codes = ['a a', 'b * e'];
+  const pattern = 'aacbe'.split('');
 
   expect(codeMatcher(codes, pattern)).toEqual(0);
 });
 
+test('codeMatcher does not match when subsequent codes require all pattern elements that have previously been matched to a code', () => {
+  const codes = ['a a', 'a a *']; // note that second pattern is matched by first pattern
+  const pattern = 'aac'.split('');
 
-// test('empty repository queried with: fronti', () => {
-//   const emptyRepo = [];
-//   const expectedResult = [];
+  expect(codeMatcher(codes, pattern)).toEqual(0);
+});
 
-//   expect(JSON.stringify(suggestUpToThree(emptyRepo, 'fronti')))
-//     .toEqual(JSON.stringify(expectedResult));
-// });
