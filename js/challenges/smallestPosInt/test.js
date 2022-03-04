@@ -22,9 +22,9 @@ test('returns the smallest pos int not appearing in input', () => {
 
 test('returns the smallest pos int not appearing in input', () => {
   const ar = []
-  for (let i = 0; i < 10000000; i++) {
+  for (let i = 0; i < 100000; i++) {
     ar.push(i); 
   }
-  expect(smallestPosIntOmitted(ar)).toEqual(10000000);
+  expect(smallestPosIntOmitted(ar)).toEqual(100000);
 });
 

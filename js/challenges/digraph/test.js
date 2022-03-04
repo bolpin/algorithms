@@ -1,5 +1,5 @@
-const { DiGraph } = require('./index');
+const { Digraph } = require('./index');
 
-test('DiGraph is defined', () => {
-  expect(DiGraph).toBeDefined();
+test('Digraph is defined', () => {
+  expect(Digraph).toBeDefined();
 });

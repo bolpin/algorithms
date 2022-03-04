@@ -1,6 +1,6 @@
 const { LinkedList } = require('./list.js');
 
-class DiGraph {
+class Digraph {
   constructor() {
     this.data = [];
   }
@@ -24,11 +24,12 @@ class DiGraph {
   }
 
   removeEdge(node, targetNode) {
-     
+
   }
 }
 
-module.exports = { DiGraph };
+module.exports = { Digraph };
+
 
 
 

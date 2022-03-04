@@ -5,7 +5,7 @@
 
 class BitVec {
   constructor(n=1028) {
-    this.size = n; 
+    this.size = n;
     this.arrSize = Math.ceil(n/32);
     this.data = new Uint32Array(this.arrSize).fill(0);
   }
@@ -15,7 +15,7 @@ class BitVec {
     const pos = n % 32;
     this.data[elem] = this.data[elem] | (1 << pos);
   }
-  
+
   unset(n) {
     const elem = Math.floor(n / 32);
     const pos = n % 32;
@@ -32,7 +32,7 @@ class BitVec {
    printElemAsBinary(el=0) {
      const digits = [];
      let n = this.data[el];
-     for (let i = 0; i < 32; i++) { 
+     for (let i = 0; i < 32; i++) {
        if (n & 1 << i) {
          digits.unshift('1');
        } else {
@@ -40,7 +40,7 @@ class BitVec {
        }
        n << 1;
      }
-     console.log(digits.join(' '));
+     // console.log(digits.join(' '));
    }
 
    *[Symbol.iterator]() {
@@ -48,7 +48,7 @@ class BitVec {
       const elem = Math.floor(n / 32);
       const pos = n % 32;
       yield(this.data[elem] & (1 << pos));
-    } 
+    }
   }
 
   firstIndexSet() {
@@ -70,7 +70,7 @@ class BitVec {
       i++;
     }
   }
-  
+
   length() {
     return this.arrSize;
   }
@@ -78,7 +78,7 @@ class BitVec {
 
 function smallestPosIntOmitted(arr) {
   const bv = new BitVec(100000000);
-  console.log(bv.length());
+  // console.log(bv.length());
 
   for (let n of arr) {
     if (n > 0) {
@@ -89,11 +89,12 @@ function smallestPosIntOmitted(arr) {
 }
 
 function smallestPosIntOmitted2(arr) {
-  let sortedPositives = arr.filter(x => x > 0).sort((a,b) => a-b);  
+  let sortedPositives = arr.filter(x => x > 0).sort((a,b) => a-b);
   if (sortedPositives.length === 0) {
     return 1;
   }
   let last = 0;
+
   while(sortedPositives.length) {
     let num = sortedPositives.shift();
     let diff = num-last;
