@@ -22,8 +22,8 @@ function chunk(array, size) {
 	return chunked;
 }
 
-console.log(chunk([ 1, 2, 3, 4,  5, 6, 7, 8, 9, 10 ], 3));
-console.log(chunk([ 1, 2, 3, 4,  5, 6, 7, 8, 9, 10 ], 4));
+// console.log(chunk([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], 3));
+// console.log(chunk([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], 4));
 
 module.exports = chunk;
 

@@ -41,9 +41,6 @@ function pyramid(n) {
   let arr = new Array(size).fill(' ');
   pyramidLevel(arr, 0)
 }
-pyramid(1);
-pyramid(3);
-pyramid(4);
 
 
 // RECURSIVE SOLUTION

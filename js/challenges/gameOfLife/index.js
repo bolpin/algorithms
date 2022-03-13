@@ -47,6 +47,8 @@ function evolveState(board, x, y) {
   return newState;
 }
 
+module.exports = { step };
+
 // function testLivingNeighbors(board) {
 //   result = [];
 //   for (let line of board) {
@@ -79,6 +81,7 @@ function step(board) {
   }
   return result;
 }
+
 let gosperGliderBoard = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -105,10 +108,28 @@ let gosperGliderBoard = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ]
-
+pressureCooker = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+    [0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0],
+    [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
 
 // let gameBoard = [[0,1,0,1], [0,0,0,1], [1,1,1,0], [0,1,0,0]]
-let gameBoard = gosperGliderBoard
+// let expectedStep = [[0,0,1,0], [1,0,0,1], [1,1,1,0], [1,1,1,0]]
+// let gameBoard = gosperGliderBoard
+// let result = step(gameBoard)
+
+
+
 
 const printAndIncrementBoard = (b) => {
   console.clear()
@@ -118,5 +139,7 @@ const printAndIncrementBoard = (b) => {
   gameBoard = step(b)
 }
 
-setInterval(() => printAndIncrementBoard(gameBoard), 200)
+// UNCOMMENT TO RUN:
+// let gameBoard = pressureCooker
+// setInterval(() => printAndIncrementBoard(gameBoard), 200)
 

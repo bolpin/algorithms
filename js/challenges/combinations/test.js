@@ -5,8 +5,7 @@ test('Combinations function exists', () => {
 });
 
 test('Finds combinations of set of four', () => {
-  let combos = combinations('abcd'.split('')); 
-  console.log(combos);
+  let combos = combinations('abcd'.split(''));
 
   expect(combos.length).toEqual(16);
 
@@ -19,7 +18,7 @@ test('Finds combinations of set of four', () => {
 });
 
 test('Finds combinations of null set', () => {
-  let combos = combinations([]); 
+  let combos = combinations([]);
 
   expect(combos.length).toEqual(1);
 
@@ -28,7 +27,7 @@ test('Finds combinations of null set', () => {
 });
 
 test('Finds combinations of set of size one', () => {
-  let combos = combinations('a'.split('')); 
+  let combos = combinations('a'.split(''));
 
   expect(combos.length).toEqual(2);
 
